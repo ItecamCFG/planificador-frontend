@@ -1,35 +1,36 @@
-import Link from "next/link";
-import ResourceTable from "@/components/ui/ResourceTable";
+import Link from "next/link"
+import ResourceTable from "@/components/ui/ResourceTable"
+import AssignmentGrid from "@/components/ui/AssigmentGrid"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+} from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "@/components/ui/accordion"
 
 // Simulación de datos para demo (estos vendrán del JSON/backend real en el futuro)
 const projects = [
   { id: "p1", name: "Proyecto A", deadline: "2025-06-01" },
   { id: "p2", name: "Proyecto B", deadline: "2025-07-15" },
-];
+]
 
 const tasks = [
   { id: "t1", project_id: "p1", name: "Tarea 1", hours: 10, expertise: "Junior", sequence: 1 },
   { id: "t2", project_id: "p1", name: "Tarea 2", hours: 15, expertise: "Senior", sequence: 2 },
   { id: "t3", project_id: "p2", name: "Tarea 3", hours: 20, expertise: "Experto", sequence: 1 },
-];
+]
 
 const resources = [
   { name: "Recurso 1", expertise: "Junior" },
   { name: "Recurso 2", expertise: "Senior" },
-];
+]
 
 export default function DashboardPage() {
   return (
@@ -72,10 +73,9 @@ export default function DashboardPage() {
 
       <div className="mt-10">
         <h2 className="text-2xl font-semibold mb-4">📁 Proyectos</h2>
-
         <Accordion type="single" collapsible className="w-full">
           {projects.map((project) => {
-            const tareasProyecto = tasks.filter((t) => t.project_id === project.id);
+            const tareasProyecto = tasks.filter((t) => t.project_id === project.id)
             return (
               <AccordionItem value={project.id} key={project.id}>
                 <AccordionTrigger>
@@ -98,21 +98,26 @@ export default function DashboardPage() {
                   </ul>
                 </AccordionContent>
               </AccordionItem>
-            );
+            )
           })}
         </Accordion>
       </div>
 
+      {/* ✅ Grid de asignaciones */}
+      <AssignmentGrid />
+
+      {/* ✅ Tabla de recursos */}
       <div className="mt-10">
         <h2 className="text-2xl font-semibold mb-4">👥 Recursos</h2>
         <ResourceTable resources={resources} />
       </div>
 
+      {/* ✅ Botón de volver */}
       <div className="mt-10">
         <Link href="/">
           <Button>Volver al inicio</Button>
         </Link>
       </div>
     </div>
-  );
+  )
 }

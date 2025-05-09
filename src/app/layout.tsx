@@ -1,16 +1,25 @@
 // src/app/layout.tsx
-import Link from "next/link";
 import "./globals.css";
+import Link from "next/link";
+
+
+export const metadata = {
+  title: "Planificador Inteligente",
+  description: "Optimización de proyectos con estilo Itecam",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className="bg-background text-foreground p-6">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="bg-background text-foreground font-sans p-6">
         <nav className="mb-8 flex gap-4 text-lg font-medium">
-          <Link href="/dashboard" className="hover:underline">🏠 Inicio</Link>
-          <Link href="/proyectos" className="hover:underline">📁 Proyectos</Link>
-          <Link href="/recursos" className="hover:underline">👥 Recursos</Link>
-          <Link href="/planificacion" className="hover:underline">🧠 Planificación</Link>
+          {/* enlaces */}
         </nav>
         <main>{children}</main>
       </body>

@@ -1,73 +1,85 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --font-sans: 'Montserrat', sans-serif;
-  --font-mono: 'Fira Code', monospace;
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-}
-
-/* --- Itecam Light Theme --- */
+/* 🎨 Tema claro */
 :root {
-  --radius: 0.5rem;
-  --background: #ffffff;
-  --foreground: #002b5c;
-  --card: #f9fafb;
-  --card-foreground: #002b5c;
-  --border: #cbd5e1;
-  --ring: #f6c400;
-  --input: #ffffff;
-  --primary: #002b5c;
-  --primary-foreground: #ffffff;
-  --secondary: #e2e8f0;
-  --secondary-foreground: #002b5c;
-  --muted: #f1f5f9;
-  --muted-foreground: #475569;
-  --accent: #f6c400;
-  --accent-foreground: #002b5c;
-  --destructive: #dc2626;
-  --popover: #ffffff;
-  --popover-foreground: #002b5c;
+  --color-bg: #ffffff;
+  --color-fg: #002b5c;
+  --color-card: #f9fafb;
+  --color-card-fg: #002b5c;
+  --color-border: #cbd5e1;
+  --color-ring: #f6c400;
+  --color-input: #ffffff;
+  --color-primary: #002b5c;
+  --color-primary-fg: #ffffff;
+  --color-secondary: #e2e8f0;
+  --color-secondary-fg: #002b5c;
+  --color-muted: #f1f5f9;
+  --color-muted-fg: #475569;
+  --color-accent: #f6c400;
+  --color-accent-fg: #002b5c;
+  --color-danger: #dc2626;
 }
 
-/* --- Dark Theme (opcional) --- */
+/* 🌒 Tema oscuro */
 .dark {
-  --background: #1e293b;
-  --foreground: #f1f5f9;
-  --card: #334155;
-  --card-foreground: #ffffff;
-  --border: #475569;
-  --ring: #f6c400;
-  --input: #1e293b;
-  --primary: #0f172a;
-  --primary-foreground: #f1f5f9;
-  --secondary: #334155;
-  --secondary-foreground: #f1f5f9;
-  --muted: #475569;
-  --muted-foreground: #94a3b8;
-  --accent: #f6c400;
-  --accent-foreground: #1e293b;
-  --destructive: #f87171;
-  --popover: #1e293b;
-  --popover-foreground: #f1f5f9;
+  --color-bg: #1e293b;
+  --color-fg: #f1f5f9;
+  --color-card: #334155;
+  --color-card-fg: #ffffff;
+  --color-border: #475569;
+  --color-ring: #f6c400;
+  --color-input: #1e293b;
+  --color-primary: #0f172a;
+  --color-primary-fg: #f1f5f9;
+  --color-secondary: #334155;
+  --color-secondary-fg: #f1f5f9;
+  --color-muted: #475569;
+  --color-muted-fg: #94a3b8;
+  --color-accent: #f6c400;
+  --color-accent-fg: #1e293b;
+  --color-danger: #f87171;
 }
 
+/* 🌐 Estilos base */
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    @apply antialiased text-base leading-relaxed;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  button {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--color-border);
+    outline-color: var(--color-ring);
     scrollbar-width: thin;
-    scrollbar-color: var(--muted) transparent;
+    scrollbar-color: var(--color-muted) transparent;
   }
 
   *::-webkit-scrollbar {
@@ -80,30 +92,7 @@
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: var(--muted);
+    background-color: var(--color-muted);
     border-radius: 8px;
-  }
-
-  body {
-    @apply bg-background text-foreground font-sans antialiased text-base leading-relaxed;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  h1, h2, h3, h4, h5 {
-    @apply font-semibold text-foreground;
-    letter-spacing: -0.025em;
-  }
-
-  a {
-    @apply text-primary hover:underline underline-offset-2;
-    transition: color 0.2s ease-in-out;
-  }
-
-  button {
-    @apply transition-all duration-200 ease-in-out;
-  }
-
-  .card {
-    @apply shadow-sm hover:shadow-md transition-shadow duration-200 rounded-lg border border-border bg-card text-card-foreground;
   }
 }

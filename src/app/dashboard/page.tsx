@@ -1,6 +1,9 @@
 import Link from "next/link"
 import ResourceTable from "@/components/ui/ResourceTable"
-import AssignmentGrid from "@/components/ui/AssigmentGrid"
+import AssignmentGrid from "@/components/ui/AssignmentGrid"
+import Timeline from "@/components/ui/Timeline"
+import KanbanBoard from "@/components/ui/KanbanBoard"
+import ExpertiseSummary from "@/components/ui/ExpertiseSummary"
 import {
   Card,
   CardContent,
@@ -105,13 +108,17 @@ export default function DashboardPage() {
 
       {/* ✅ Grid de asignaciones */}
       <AssignmentGrid />
-
+        {/* ✅ Timeline de tareas */}
+        <Timeline />
+        {/* ✅ Kanban de tareas */}
+        <KanbanBoard />
       {/* ✅ Tabla de recursos */}
       <div className="mt-10">
         <h2 className="text-2xl font-semibold mb-4">👥 Recursos</h2>
         <ResourceTable resources={resources} />
       </div>
-
+        {/* ✅ Resumen de expertise */}
+        <ExpertiseSummary tasks={tasks} resources={resources} />
       {/* ✅ Botón de volver */}
       <div className="mt-10">
         <Link href="/">
